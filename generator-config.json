@@ -1,0 +1,18 @@
+{
+  "groupId": "de.tanzschulerenz.tanzplaner",
+  "artifactId": "renz-tanzplaner-java-sdk",
+  "artifactDescription": "Java SDK for the dance planner of dance school Renz",
+  "artifactUrl": "https://github.com/SimonIT/renz-tanzplaner-java-sdk",
+  "apiPackage": "de.tanzschulerenz.tanzplaner.client.api",
+  "invokerPackage": "de.tanzschulerenz.tanzplaner.client",
+  "modelPackage": "de.tanzschulerenz.tanzplaner.client.model",
+  "library": "okhttp-gson",
+  "scmConnection": "scm:git:git@github.com:SimonIT/renz-tanzplaner-java-sdk.git",
+  "scmDeveloperConnection": "scm:git:git@github.com:SimonIT/renz-tanzplaner-java-sdk.git",
+  "scmUrl": "https://github.com/SimonIT/renz-tanzplaner-java-sdk",
+  "developerEmail": "simonit.orig@gmail.com",
+  "developerName": "SimonIT",
+  "developerOrganization": "SimonIT",
+  "developerOrganizationUrl": "https://github.com/SimonIT",
+  "hideGenerationTimestamp": true
+}

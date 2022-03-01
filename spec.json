@@ -1,0 +1,311 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Tanzplaner",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://www.tanzschule-renz.de/tanzplaner"
+    }
+  ],
+  "paths": {
+    "/courses/": {
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "with_entries",
+            "in": "query",
+            "schema": {
+              "default": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "show_entry_details",
+            "in": "query",
+            "schema": {
+              "default": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/coursesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entries/": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/entriesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entries/view/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/entryResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "locationinfo": {
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "routeUrl": {
+            "format": "uri",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "info": {
+        "properties": {
+          "block": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "locationinfo": {
+            "$ref": "#/components/schemas/locationinfo"
+          },
+          "start": {
+            "type": "string"
+          },
+          "start_time": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "when": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "entry": {
+        "properties": {
+          "block": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "course": {
+            "$ref": "#/components/schemas/course"
+          },
+          "course_id": {
+            "type": "integer"
+          },
+          "created": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "description_short": {
+            "type": "string"
+          },
+          "disabled": {
+            "type": "boolean"
+          },
+          "duration": {
+            "type": "integer"
+          },
+          "end_date": {
+            "nullable": true,
+            "format": "date-time",
+            "type": "string"
+          },
+          "end_time": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer"
+          },
+          "info": {
+            "$ref": "#/components/schemas/info"
+          },
+          "location": {
+            "type": "string"
+          },
+          "modified": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "start_date": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "start_time": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "step": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "user_id": {
+            "type": "integer"
+          },
+          "weekday": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "course": {
+        "properties": {
+          "created": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "description_short": {
+            "type": "string"
+          },
+          "entries": {
+            "items": {
+              "$ref": "#/components/schemas/entry"
+            },
+            "type": "array"
+          },
+          "group_entries": {
+            "type": "boolean"
+          },
+          "grouped_entries": {
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/entry"
+              }
+            },
+            "type": "array"
+          },
+          "id": {
+            "type": "integer"
+          },
+          "modified": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "sorting": {
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "coursesResponse": {
+        "type": "object",
+        "properties": {
+          "courses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/course"
+            }
+          }
+        }
+      },
+      "entryResponse": {
+        "type": "object",
+        "properties": {
+          "entry": {
+            "$ref": "#/components/schemas/entry"
+          }
+        }
+      },
+      "entriesResponse": {
+        "type": "object",
+        "properties": {
+          "entries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/entry"
+            }
+          }
+        }
+      }
+    }
+  }
+}
